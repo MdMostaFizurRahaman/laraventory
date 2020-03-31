@@ -1,0 +1,102 @@
+@extends('layouts.admin')
+
+@section('title')
+Add Permission
+@endsection
+
+@push('styles')
+
+@endpush
+
+@section('content')
+<!-- Content Header (Page header) -->
+<div class="content">
+    <div class="content-header">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Create Permission Group Info</h1>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div>
+    <div class="container-fluid">
+        {!! Form::open(['route' => 'admin-permissions.store', 'method' =>'post']) !!}
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-body">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                {{ Form::label("Permission Name", null) }}
+                                {{Form::text("name", null,["class" => "form-control","placeholder" => "Name",])}}
+                                @if ($errors->has('name'))
+                                <div class="error text-danger">{{ $errors->first('name') }}</div>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                {{ Form::label("Description", null) }}
+                                {{Form::textarea("description", null,["class" => "form-control",'rows' => '3'])}}
+                                @if ($errors->has('description'))
+                                <div class="error text-danger">{{ $errors->first('description') }}</div>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <div class="icheck-primary">
+                                    {!! Form::checkbox('status', '1', 1, ['id'=>'status', 'class'=>'form-control']) !!}
+                                    {!! Form::label('status', '&nbsp;Active') !!}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3 mt-3">
+                            <div class="col-lg-12">
+                                <h4 class="d-inline-block mr-5">Select Permissions</h4>
+                                <div class="icheck-primary d-inline-block">
+                                    <input type="checkbox" id="checkAll" />
+                                    <label for="checkAll">Select All</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            @foreach ($permissions as $permission)
+                            <div class="col-md-3">
+                                <div class="icheck-primary">
+                                    <input type="checkbox" class="checkBoxClass" id="{{$permission->id}}"
+                                        name="permissions[]" value="{{$permission->id}}" />
+                                    <label for="{{$permission->id}}">{{$permission->display_name}}</label>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+
+                        @if(Auth::guard('admin')->user()->hasRole('admin') ||
+                        Auth::guard('admin')->user()->can(['read-admin-permissions']))
+                        <a href="{{route('admin-permissions.index')}}" type="button" class="btn btn-danger">Cancel</a>
+                        @endif
+                    </div>
+                </div>
+            </div><!-- /.card -->
+        </div>
+        {!! Form::close() !!}
+    </div><!-- /.container-fluid -->
+</div>
+@endsection
+
+
+@push('scripts')
+<script>
+    $(document).ready(function () {
+            $("#checkAll").click(function () {
+                $(".checkBoxClass").prop('checked', $(this).prop('checked'));
+            });
+
+            $(".checkBoxClass").change(function(){
+                if (!$(this).prop("checked")){
+                    $("#checkAll").prop("checked",false);
+                }
+            });
+        });
+</script>
+@endpush

@@ -1,0 +1,130 @@
+.user-layout {
+    margin-top: 8px;
+    border-radius: 0 !important;
+}
+.readonly {
+    pointer-events: none;
+    opacity: 0.8;
+}
+button,
+a[type="button"],
+a[type="submit"],
+a.btn,
+.custom-file,
+.custom-file-label,
+.input-group-text,
+.select2-container--default .select2-selection--single,
+.select2-dropdown,
+.select2-container--bootstrap4 .select2-selection,
+input {
+    border-radius: 0 !important;
+}
+.form-control:focus {
+    color: #495057;
+    border-color: #3c8dbc;
+    outline: 0;
+    box-shadow: none;
+}
+.select2-container--bootstrap4.select2-container--focus .select2-selection {
+    outline: 0 none !important;
+    box-shadow: none !important;
+}
+textarea.form-control {
+    border-radius: 0;
+    min-height: 200px;
+}
+
+td.action a {
+    float: left;
+    margin-right: 2px;
+}
+.table td,
+.table th {
+    padding: 0.5rem;
+    vertical-align: middle;
+}
+.card-body > .table > thead > tr > td,
+.card-body > .table > thead > tr > th {
+    border-top-width: 1px !important;
+    border-bottom-width: 1px !important;
+}
+
+.breadcrumb {
+    display: none !important;
+}
+
+textarea.resize-vertical {
+    resize: vertical;
+}
+
+.allpermissions {
+    font-weight: 600;
+}
+
+.selectrevert {
+    font-size: 14px;
+    margin: 10px;
+}
+
+.revert {
+    font-size: 14px;
+    margin-left: 10px;
+}
+label:not(.form-check-label):not(.custom-file-label) {
+    font-weight: 500;
+}
+
+.selectrevertcategory label {
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+a#copy-button {
+    position: absolute;
+    top: 37px;
+    right: -100px;
+    z-index: 999;
+}
+@media only screen and (max-width: 767px) {
+    a#copy-button {
+        top: 0;
+        right: 10px;
+    }
+}
+
+.permissionlabel {
+    font-weight: 500;
+}
+
+.checked + .permissionlabel {
+    font-weight: 700 !important;
+}
+
+.form-group.custom-position {
+    position: relative;
+}
+.unauthorized-page {
+    width: 100%;
+    height: calc(100vh - 131px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 100px;
+}
+.unauthorized-page .headline {
+    font-size: 70px;
+    color: #ea5959;
+    text-transform: uppercase;
+    text-align: center;
+}
+@media (max-width: 575.98px) {
+    .unauthorized-page {
+        padding: 0 70px;
+    }
+    .unauthorized-page .headline {
+        font-size: 40px;
+    }
+}
+.error-page > .headline {
+    margin-top: 0px;
+}
